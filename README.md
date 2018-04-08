@@ -25,7 +25,7 @@
 
 ### Changelog 
 
-* Changelog доступе по ссылке URL
+* Changelog доступе по ссылке https://github.com/Teaminds/accounting/blob/master/CHANGELOG.md
 
 ### Текущий функционал
 
