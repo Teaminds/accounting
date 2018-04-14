@@ -18,16 +18,16 @@
                                 <input type="date" class="form-control" name="adddate" id="adddate" value="<?= date('Y-m-d'); ?>">
                             </div>
                             <div class="col-auto">
-                                <label class="sr-only" for="addnapravlenie">Тип </label>
-                                <select name="addnapravlenie" class="custom-select" id="addnapravlenie" onchange="displaychangeforadd();">
+                                <label class="sr-only" for="addnapravlenie">Направление </label>
+                                <select name="addnapravlenie" class="custom-select" id="addnapravlenie" onchange="displaychangeforadd('add');">
                                     <option value="1" selected>Доход</option>
                                     <option value="0">Расход</option>
                                 </select>
                             </div>
                             <?php foreach ($data['category_and_subcategory_array']['category_list'] as $type => $value): ?>
-                                <div class="col-auto col-md-2 d-none" id="blockcategory<?= $type ?>">
-                                    <label class="sr-only" for="category<?= $type ?>">Тип </label>
-                                    <select name="category<?= $type ?>" class="custom-select" id="category<?= $type ?>" onchange="displaychangeforadd();">
+                                <div class="col-auto col-md-2 d-none" id="addblockcategory<?= $type ?>">
+                                    <label class="sr-only" for="addcategory<?= $type ?>">Категория </label>
+                                    <select name="addcategory<?= $type ?>" class="custom-select" id="addcategory<?= $type ?>" onchange="displaychangeforadd('add');">
                                         <?php foreach ($value as $key => $category): ?>
                                             <option value="<?= $key ?>"><?= $category ?></option>
                                         <?php endforeach; ?>
@@ -35,9 +35,9 @@
                                 </div>
                             <?php endforeach; ?>
                             <?php foreach ($data['category_and_subcategory_array']['subcategory_list'] as $type => $value): ?>
-                                <div class="col-auto col-md-3 d-none" id="blocksubcategory<?= $type ?>">
-                                    <label class="sr-only" for="subcategory<?= $type ?>">Тип </label>
-                                    <select name="subcategory<?= $type ?>" class="custom-select" id="subcategory<?= $type ?>" onchange="displaychangeforadd();">
+                                <div class="col-auto col-md-3 d-none" id="addblocksubcategory<?= $type ?>">
+                                    <label class="sr-only" for="addsubcategory<?= $type ?>">Подкатегория </label>
+                                    <select name="addsubcategory<?= $type ?>" class="custom-select" id="addsubcategory<?= $type ?>" onchange="displaychangeforadd('add');">
                                         <?php foreach ($value as $key => $category): ?>
                                             <option value="<?= $key ?>"><?= $category ?></option>
                                         <?php endforeach; ?>
@@ -45,7 +45,7 @@
                                 </div>
                             <?php endforeach; ?>
                             <script>
-                                displaychangeforadd();
+                                displaychangeforadd('add');
                             </script>
                             <div class="col-auto">
                                 <label class="sr-only"  for="addmoney">Сумма </label>

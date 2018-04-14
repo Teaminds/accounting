@@ -4,6 +4,15 @@
  * and open the template in the editor.
  */
 
+function paymentedit (id)
+{
+    
+}
+
+function paymentdelete (id)
+{
+    
+}
 
 function addpayment(afterfunction = "")
 {
@@ -24,6 +33,6 @@ function addpayment(afterfunction = "")
         url: 'mainlog',
         data: getadd,
         success: console.log("success add")
-    })
+    });
     setTimeout(afterfunction(), 500);
 }

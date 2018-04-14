@@ -4,23 +4,24 @@
  * and open the template in the editor.
  */
 
-function displaychangeforadd() {
-    nowvisblecategory = document.getElementsByClassName('categoryblock')[0];
+function displaychangeforadd(targetprefix) {
+    
+    nowvisblecategory = document.getElementsByClassName(targetprefix+'categoryblock')[0];
     if (nowvisblecategory) {
-        document.getElementsByClassName('categoryblock')[0].classList.replace("categoryblock", "d-none");
+        document.getElementsByClassName(targetprefix+'categoryblock')[0].classList.replace(targetprefix+"categoryblock", "d-none");
     }
-    typefield = document.getElementById('addnapravlenie');
+    typefield = document.getElementById(targetprefix+'napravlenie');
     typefield = typefield.options[typefield.selectedIndex].value;
-    blockcategoryid = 'blockcategory' + typefield;
-    categoryid = 'category' + typefield;
-    document.getElementById(blockcategoryid).classList.replace("d-none", "categoryblock");
+    blockcategoryid = targetprefix+'blockcategory' + typefield;
+    categoryid = targetprefix+'category' + typefield;
+    document.getElementById(blockcategoryid).classList.replace("d-none", targetprefix+"categoryblock");
 
-    nowvisblesubcategory = document.getElementsByClassName('subcategoryblock')[0];
+    nowvisblesubcategory = document.getElementsByClassName(targetprefix+'subcategoryblock')[0];
     if (nowvisblesubcategory) {
-        document.getElementsByClassName('subcategoryblock')[0].classList.replace("subcategoryblock", "d-none");
+        document.getElementsByClassName(targetprefix+'subcategoryblock')[0].classList.replace(targetprefix+"subcategoryblock", "d-none");
     }
     subtypefield = document.getElementById(categoryid);
     subtypefield = subtypefield.options[subtypefield.selectedIndex].value;
-    blocksubcategoryid = 'blocksubcategory' + subtypefield;
-    document.getElementById(blocksubcategoryid).classList.replace("d-none", "subcategoryblock");
+    blocksubcategoryid = targetprefix+'blocksubcategory' + subtypefield;
+    document.getElementById(blocksubcategoryid).classList.replace("d-none", targetprefix+"subcategoryblock");
 }
