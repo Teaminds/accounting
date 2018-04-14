@@ -7,6 +7,60 @@
  */
 class Payment {
 
+    public $id = "";
+    public $date = "";
+    public $napravlenie = "";
+    public $napravlenie_name = "";
+    public $category_id = "";
+    public $category_name = "";
+    public $subcategory_id = "";
+    public $subcategory_name = "";
+    public $money = "";
+    
+    public function __construct($idforpayment) {
+        $payment=$this->get($idforpayment);
+        $this->id = $payment[0]['ID'];
+        $this->date = $payment[0]['DATE'];
+        $this->napravlenie = $payment[0]['TYPE'];
+        $this->napravlenie_name = $payment[0]['TYPE_NAME'];
+        $this->category_id = $payment[0]['CATEGORY_ID'];
+        $this->category_name = $payment[0]['CATEGORY_NAME'];
+        $this->subcategory_id = $payment[0]['SUBCATEGORY_ID'];
+        $this->subcategory_name = $payment[0]['SUBCATEGORY_NAME'];
+        $this->money = $payment[0]['MONEY'];
+      }
+    
+    public function get($idforpayment){
+        $dbconnect = new Db();
+        $mysql_string = "SELECT `money_operations`.`ID`AS'ID', `money_operations`.`DATE`AS'DATE', `money_operations`.`TYPE`AS`TYPE`,`category`.`ID`AS'CATEGORY_ID', `category`.`NAME`AS'CATEGORY_NAME', `subcategory`.`NAME`as'SUBCATEGORY_NAME', `subcategory`.`ID`as'SUBCATEGORY_ID', `money_operations`.`MONEY`AS'MONEY' FROM `money_operations` INNER JOIN `category` ON `money_operations`.`CATEGORY`=`category`.`ID` LEFT JOIN`subcategory` ON `money_operations`.`SUBCATEGORY`=`subcategory`.`ID` WHERE `money_operations`.`ID`='$idforpayment'";
+        $result = $dbconnect->mysql_query_in_array($mysql_string);
+        unset($dbconnect);
+        switch ($result[0]['TYPE']){
+            case "1":
+                $result[0]['TYPE_NAME']="Доход";
+            break;
+            case "0":
+                $result[0]['TYPE_NAME']="Расход";
+            break;
+        }
+        return $result;
+    }
+    
+    public function edit($money="0",$date,$type="1",$category="",$subcategory=""){
+        $dbconnect = new Db();
+        $mysql_string = "UPDATE `money_operations` SET `TYPE` = '$type', `DATE`='$date', `CATEGORY` = '$category', `SUBCATEGORY` = '$subcategory', `MONEY` = '$money' WHERE `money_operations`.`ID`='$this->id'";
+        $result = $dbconnect->mysql_query_in_none($mysql_string);
+        unset($dbconnect);
+        return $result;
+    }
+    
+       public function delete(){
+        $dbconnect = new Db();
+        $mysql_string = "DELETE FROM `money_operations` WHERE `money_operations`.`ID` = '$this->id'";
+        $result = $dbconnect->mysql_query_in_none($mysql_string);
+        unset($dbconnect);
+        return $result;
+    }
     /**
      * Функция для получения списка платежей
      * @param array $when - массив с датами 'start' и 'end' для ограничения списка

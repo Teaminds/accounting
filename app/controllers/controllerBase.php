@@ -25,6 +25,9 @@ if (file_exists('config.ini')) { //если есть конфиг-файл, вс
         case 'category':
             include 'app/controllers/controllerCategory.php';
             break;
+        case 'paymenttools':
+            include 'app/controllers/controllerPaymenttools.php';
+            break;
         case 'index':
             include 'app/controllers/controllerIndex.php';
             break;
