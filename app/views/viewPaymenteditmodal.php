@@ -20,8 +20,8 @@
             <div class="row " id="editpay">
                 <div class="col-12">
                     <div class="form-group d-none">
-                        <label class="" for="editdate">id </label>
-                        <input type="number" class="form-control" disbled name="editid" id="editid" value="">
+                        <label class="" for="editid">id </label>
+                        <input type="number" class="form-control" name="editid" id="editid">
                     </div>
                     <div class="form-group">
                         <label class="" for="editdate">Дата </label>
@@ -30,8 +30,8 @@
                     <div class="form-group">
                         <label class="" for="editnapravlenie">Направление </label>
                         <select name="editnapravlenie" class="custom-select" id="editnapravlenie" onchange="displaychangeforadd('edit');">
-                            <option value="1" selected>Доход</option>
                             <option value="0">Расход</option>
+                            <option value="1" selected>Доход</option>
                         </select>
                     </div>
                     <?php foreach ($data['category_and_subcategory_array']['category_list'] as $type => $value): ?>
@@ -66,8 +66,8 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Отменить</button>
-          <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="paymentdelete('')">Удалить запись</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="paymentedit('')">Сохранить изменения</button>
+          <button type="button" class="btn btn-danger" id="buttondelete" data-dismiss="modal" onclick="paymentdelete('')">Удалить запись</button>
+          <button type="button" class="btn btn-primary" id="buttonedit" data-dismiss="modal" onclick="paymentedit('')">Сохранить изменения</button>
         </div>
     </form>
     </div>

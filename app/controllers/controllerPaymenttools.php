@@ -26,3 +26,10 @@ if ($args->args['deletepaymentmode']=="1"){
     echo $payment->id;
     $payment->delete();
 }
+switch ($args->args['getpayment']['format']) {
+    case "json":
+        $data['paymentdetail'] = json_encode($data['paymentdetail']);
+        break;
+}
+
+echo $data['paymentdetail'];

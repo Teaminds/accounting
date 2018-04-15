@@ -48,7 +48,7 @@
                         <td class="$moneytdclass">$category</td>
                         <td class="$moneytdclass">$subcategory</td>
                         <td class="$moneytdclass">$money</td>
-                        <td class="$moneytdclass editbuttoncell text-right"><button type="button" class="btn btn-light btn-block btn-sm " data-toggle="modal" onclick="editpayment('$id')" data-target="#editpayment">Редактировать</button></td>
+                        <td class="$moneytdclass editbuttoncell text-right"><button type="button" class="btn btn-light btn-block btn-sm " data-toggle="modal" onclick="editwindowdatainsert('$id')" data-target="#editpayment">Редактировать</button></td>
                     </tr>
 EOT;
                     unset($date, $type, $money, $rowclass, $typetext);

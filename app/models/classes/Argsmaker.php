@@ -30,7 +30,8 @@ class Argsmaker {
         'elements_on_page' => "",
         'getpaymentmode' => "",
         'getpayment' => array (
-            'id' => ""
+            'id' => "",
+            'format' => ""
         ),
         'deletepaymentmode' => "",
         'deletepayment' => array (
@@ -104,7 +105,8 @@ class Argsmaker {
             }
             $this->setGetPaymentMode(filter_input(INPUT_GET, 'getpayment', FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['int']))));
             if ($this->args['getpaymentmode'] == "1") {
-                $this->setMoneyGetId(filter_input(INPUT_GET, 'moneygetid', FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['int']))));
+                $this->setGetPaymentId(filter_input(INPUT_GET, 'getpaymentid', FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['int']))));
+                $this->setGetPaymentFormat(filter_input(INPUT_GET, 'getpaymentformat', FILTER_SANITIZE_STRING));
             }
             $this->setDeletePaymentMode(filter_input(INPUT_GET, 'deletepayment', FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['int']))));
             if ($this->args['deletepaymentmode'] == "1") {
@@ -290,12 +292,19 @@ class Argsmaker {
         }
     }
     
-        public function setMoneyGetId($option) {
+        public function setGetPaymentId($option) {
         $draft = filter_var($option, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['int'])));
         if ($draft) {
             $this->args['getpayment']['id'] = $draft;
         }
     }   
+    
+        public function setGetPaymentFormat($option) {
+        $draft = filter_var($option, FILTER_SANITIZE_STRING);
+        if ($draft) {
+            $this->args['getpayment']['format'] = $draft;
+        }
+    }
     
     public function setDeletePaymentMode($option) {
         $draft = filter_var($option, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['int'])));
