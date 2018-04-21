@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-function updatemainlog(newpage)
+function updatemainlog(newpage = document.getElementById('pagination').getAttribute('activepage'))
 {
     if (newpage > 0) {
         document.getElementById('page').value = newpage;

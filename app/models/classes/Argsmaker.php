@@ -28,6 +28,24 @@ class Argsmaker {
         ),
         'pagenumber' => "",
         'elements_on_page' => "",
+        'getpaymentmode' => "",
+        'getpayment' => array(
+            'id' => "",
+            'format' => ""
+        ),
+        'deletepaymentmode' => "",
+        'deletepayment' => array(
+            'id' => ""
+        ),
+        'editpaymentmode' => "",
+        'editpayment' => array(
+            'id' => "",
+            'date' => "",
+            'money' => "",
+            'napravlenie' => "",
+            'category' => "",
+            'subcategory' => ""
+        ),
         'addpaymentmode' => "",
         'addmoney' => array(
             'date' => "",
@@ -84,6 +102,24 @@ class Argsmaker {
                 $this->setMoneyAddCategory(filter_input(INPUT_GET, 'moneyaddcategory', FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['int']))));
                 $this->setMoneyAddSubcategory(filter_input(INPUT_GET, 'moneyaddsubcategory', FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['int']))));
                 $this->setMoneyAddMoney(filter_input(INPUT_GET, 'moneyaddmoney', FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['int']))));
+            }
+            $this->setGetPaymentMode(filter_input(INPUT_GET, 'getpayment', FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['int']))));
+            if ($this->args['getpaymentmode'] == "1") {
+                $this->setGetPaymentId(filter_input(INPUT_GET, 'getpaymentid', FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['int']))));
+                $this->setGetPaymentFormat(filter_input(INPUT_GET, 'getpaymentformat', FILTER_SANITIZE_STRING));
+            }
+            $this->setDeletePaymentMode(filter_input(INPUT_GET, 'deletepayment', FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['int']))));
+            if ($this->args['deletepaymentmode'] == "1") {
+                $this->setMoneyDeleteId(filter_input(INPUT_GET, 'moneydeleteid', FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['int']))));
+            }
+            $this->setEditPaymentMode(filter_input(INPUT_GET, 'editpayment', FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['int']))));
+            if ($this->args['editpaymentmode'] == "1") {
+                $this->setMoneyEditId(filter_input(INPUT_GET, 'moneyeditid', FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['int']))));
+                $this->setMoneyEditNapravlenie(filter_input(INPUT_GET, 'moneyeditnapravlenie', FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['napravlenie']))));
+                $this->setMoneyEditDate(filter_input(INPUT_GET, 'moneyeditdate', FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['date']))));
+                $this->setMoneyEditCategory(filter_input(INPUT_GET, 'moneyeditcategory', FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['int']))));
+                $this->setMoneyEditSubcategory(filter_input(INPUT_GET, 'moneyeditsubcategory', FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['int']))));
+                $this->setMoneyEditMoney(filter_input(INPUT_GET, 'moneyeditmoney', FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['int']))));
             }
             $this->setAddCategoryMode(filter_input(INPUT_GET, 'addcategory', FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['int']))));
             if ($this->args['addcategorymode'] == "1") {
@@ -246,6 +282,90 @@ class Argsmaker {
         $draft = filter_var($option, FILTER_SANITIZE_STRING);
         if ($draft) {
             $this->args['addsubcategory']['name'] = $draft;
+        }
+    }
+
+    public function setGetPaymentMode($option) {
+        $draft = filter_var($option, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['int'])));
+        if ($draft == "1") {
+            $this->args['getpaymentmode'] = $draft;
+        }
+    }
+
+    public function setGetPaymentId($option) {
+        $draft = filter_var($option, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['int'])));
+        if ($draft) {
+            $this->args['getpayment']['id'] = $draft;
+        }
+    }
+
+    public function setGetPaymentFormat($option) {
+        $draft = filter_var($option, FILTER_SANITIZE_STRING);
+        if ($draft) {
+            $this->args['getpayment']['format'] = $draft;
+        }
+    }
+
+    public function setDeletePaymentMode($option) {
+        $draft = filter_var($option, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['int'])));
+        if ($draft == "1") {
+            $this->args['deletepaymentmode'] = $draft;
+        }
+    }
+
+    public function setMoneyDeleteId($option) {
+        $draft = filter_var($option, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['int'])));
+        if ($draft) {
+            $this->args['deletepayment']['id'] = $draft;
+        }
+    }
+
+    public function setEditPaymentMode($option) {
+        $draft = filter_var($option, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['int'])));
+        if ($draft == "1") {
+            $this->args['editpaymentmode'] = $draft;
+        }
+    }
+
+    public function setMoneyEditId($option) {
+        $draft = filter_var($option, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['int'])));
+        if ($draft) {
+            $this->args['editpayment']['id'] = $draft;
+        }
+    }
+
+    public function setMoneyEditNapravlenie($option) {
+        $draft = filter_var($option, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['napravlenie'])));
+        if ($draft) {
+            $this->args['editpayment']['napravlenie'] = $draft;
+        }
+    }
+
+    public function setMoneyEditMoney($option) {
+        $draft = filter_var($option, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['money'])));
+        if ($draft) {
+            $this->args['editpayment']['money'] = $draft;
+        }
+    }
+
+    public function setMoneyEditDate($option) {
+        $draft = $this->datecheck(filter_var($option, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['date']))));
+        if ($draft) {
+            $this->args['editpayment']['date'] = $draft;
+        }
+    }
+
+    public function setMoneyEditCategory($option) {
+        $draft = filter_var($option, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['int'])));
+        if ($draft) {
+            $this->args['editpayment']['category'] = $draft;
+        }
+    }
+
+    public function setMoneyEditSubcategory($option) {
+        $draft = filter_var($option, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['int'])));
+        if ($draft) {
+            $this->args['editpayment']['subcategory'] = $draft;
         }
     }
 

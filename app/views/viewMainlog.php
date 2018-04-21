@@ -13,6 +13,7 @@
                     <th>Категория</th>
                     <th>Статья</th>
                     <th>Сумма</th>
+                    <th>Управление</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,6 +24,7 @@
                     $category = $array_for_payment_list_value['CATEGORY'];
                     $subcategory = $array_for_payment_list_value['SUBCATEGORY'];
                     $money = $array_for_payment_list_value['MONEY'];
+                    $id = $array_for_payment_list_value['ID'];
                     $rowclass = "";
                     $typetext = "";
                     $moneytdclass = "";
@@ -46,6 +48,7 @@
                         <td class="$moneytdclass">$category</td>
                         <td class="$moneytdclass">$subcategory</td>
                         <td class="$moneytdclass">$money</td>
+                        <td class="$moneytdclass editbuttoncell text-right"><button type="button" class="btn btn-light btn-block btn-sm " data-toggle="modal" onclick="editwindowdatainsert('$id')" data-target="#editpayment">Редактировать</button></td>
                     </tr>
 EOT;
                     unset($date, $type, $money, $rowclass, $typetext);
