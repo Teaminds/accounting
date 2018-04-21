@@ -1,10 +1,12 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Функции для отправки запросов на создание, редактирование и удаление платежей
  */
 
-function paymentedit (id)
+/**
+ * Редактирование платежа
+ */
+
+function paymentedit(id)
 {
     getedit = "";
     editdate = document.getElementById('editdate').value;
@@ -17,7 +19,7 @@ function paymentedit (id)
     subcategorydraft = document.getElementById(selectsubcategoryid);
     subcategory = subcategorydraft.options[subcategorydraft.selectedIndex].value;
     editmoney = document.getElementById('editmoney').value;
-    getedit = "editpayment=1&moneyeditid="+id+"&moneyeditdate=" + editdate + "&moneyeditnapravlenie=" + editnapravlenie + "&moneyeditcategory=" + category + "&moneyeditsubcategory=" + subcategory + "&moneyeditmoney=" + editmoney;
+    getedit = "editpayment=1&moneyeditid=" + id + "&moneyeditdate=" + editdate + "&moneyeditnapravlenie=" + editnapravlenie + "&moneyeditcategory=" + category + "&moneyeditsubcategory=" + subcategory + "&moneyeditmoney=" + editmoney;
     $.ajax({
         type: "GET",
         url: 'paymenttools',
@@ -26,7 +28,11 @@ function paymentedit (id)
     });
 }
 
-function paymentdelete (id)
+/**
+ * Удаление платежа
+ */
+
+function paymentdelete(id)
 {
     getdelete = "deletepayment=1&moneydeleteid=" + id;
     $.ajax({
@@ -37,16 +43,20 @@ function paymentdelete (id)
     });
 }
 
+/**
+ * Добавление платежа
+ */
+
 function addpayment(afterfunction = "")
 {
     getadd = "";
     adddate = document.getElementById('adddate').value;
     addnapravleniefirst = document.getElementById('addnapravlenie');
     addnapravlenie = addnapravleniefirst.options[addnapravleniefirst.selectedIndex].value;
-    selectcategoryid = 'category' + addnapravlenie;
+    selectcategoryid = 'addcategory' + addnapravlenie;
     categorydraft = document.getElementById(selectcategoryid);
     category = categorydraft.options[categorydraft.selectedIndex].value;
-    selectsubcategoryid = 'subcategory' + category;
+    selectsubcategoryid = 'addsubcategory' + category;
     subcategorydraft = document.getElementById(selectsubcategoryid);
     subcategory = subcategorydraft.options[subcategorydraft.selectedIndex].value;
     addmoney = document.getElementById('addmoney').value;

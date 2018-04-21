@@ -1,43 +1,52 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Функции для отработки смены списков в формах добаления и редактирования
+ */
+
+/**
+ * Смена полей в форме добавления платежа
  */
 
 function displaychangeforadd(targetprefix) {
-    
-    nowvisblecategory = document.getElementsByClassName(targetprefix+'categoryblock')[0];
-    if (nowvisblecategory) {
-        document.getElementsByClassName(targetprefix+'categoryblock')[0].classList.replace(targetprefix+"categoryblock", "d-none");
-    }
-    typefield = document.getElementById(targetprefix+'napravlenie');
-    typefield = typefield.options[typefield.selectedIndex].value;
-    blockcategoryid = targetprefix+'blockcategory' + typefield;
-    categoryid = targetprefix+'category' + typefield;
-    document.getElementById(blockcategoryid).classList.replace("d-none", targetprefix+"categoryblock");
 
-    nowvisblesubcategory = document.getElementsByClassName(targetprefix+'subcategoryblock')[0];
+    nowvisblecategory = document.getElementsByClassName(targetprefix + 'categoryblock')[0];
+    if (nowvisblecategory) {
+        document.getElementsByClassName(targetprefix + 'categoryblock')[0].classList.replace(targetprefix + "categoryblock", "d-none");
+    }
+    typefield = document.getElementById(targetprefix + 'napravlenie');
+    typefield = typefield.options[typefield.selectedIndex].value;
+    blockcategoryid = targetprefix + 'blockcategory' + typefield;
+    categoryid = targetprefix + 'category' + typefield;
+    document.getElementById(blockcategoryid).classList.replace("d-none", targetprefix + "categoryblock");
+
+    nowvisblesubcategory = document.getElementsByClassName(targetprefix + 'subcategoryblock')[0];
     if (nowvisblesubcategory) {
-        document.getElementsByClassName(targetprefix+'subcategoryblock')[0].classList.replace(targetprefix+"subcategoryblock", "d-none");
+        document.getElementsByClassName(targetprefix + 'subcategoryblock')[0].classList.replace(targetprefix + "subcategoryblock", "d-none");
     }
     subtypefield = document.getElementById(categoryid);
     subtypefield = subtypefield.options[subtypefield.selectedIndex].value;
-    blocksubcategoryid = targetprefix+'blocksubcategory' + subtypefield;
-    document.getElementById(blocksubcategoryid).classList.replace("d-none", targetprefix+"subcategoryblock");
+    blocksubcategoryid = targetprefix + 'blocksubcategory' + subtypefield;
+    document.getElementById(blocksubcategoryid).classList.replace("d-none", targetprefix + "subcategoryblock");
 }
+
+/**
+ * Функция перебора option-элементов, для выбора активным нужного
+ */
 
 function set_matching_select(selectObj, txtObj)
 {
-   var name = txtObj;
-   for(var i = 0; i < 30; i++)
-   {
-      if(selectObj.options[i].value == name) {
-      selectObj.selectedIndex = i;
-      i="50";
-      }
-   }
+    var name = txtObj;
+    for (var i = 0; i < 30; i++)
+    {
+        if (selectObj.options[i].value == name) {
+            selectObj.selectedIndex = i;
+            i = "50";
+        }
+    }
 }
 
+/**
+ * Функция установки в форму редактирования даннных
+ */
 
 function editwindowdatainsert(id) {
     getbyid = "getpayment=1&getpaymentformat=json&getpaymentid=" + id;
@@ -55,8 +64,8 @@ function editwindowdatainsert(id) {
             inputcategoryid = document.getElementById('editcategory' + parse.napravlenie.id);
             inputsubcategoryid = document.getElementById('editsubcategory' + parse.category.id);
             inputmoney = document.getElementById('editmoney');
-            buttondelete.setAttribute("onclick", "paymentdelete"+"('"+ parse.id +"')");
-            buttonedit.setAttribute("onclick", "paymentedit"+"('"+ parse.id +"')");
+            buttondelete.setAttribute("onclick", "paymentdelete" + "('" + parse.id + "')");
+            buttonedit.setAttribute("onclick", "paymentedit" + "('" + parse.id + "')");
             inputid.setAttribute("value", parse.id);
             inputdate.setAttribute("value", parse.date);
             inputmoney.setAttribute("value", parse.money);

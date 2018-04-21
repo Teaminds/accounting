@@ -29,16 +29,16 @@ class Argsmaker {
         'pagenumber' => "",
         'elements_on_page' => "",
         'getpaymentmode' => "",
-        'getpayment' => array (
+        'getpayment' => array(
             'id' => "",
             'format' => ""
         ),
         'deletepaymentmode' => "",
-        'deletepayment' => array (
+        'deletepayment' => array(
             'id' => ""
         ),
         'editpaymentmode' => "",
-        'editpayment' => array (
+        'editpayment' => array(
             'id' => "",
             'date' => "",
             'money' => "",
@@ -291,56 +291,56 @@ class Argsmaker {
             $this->args['getpaymentmode'] = $draft;
         }
     }
-    
-        public function setGetPaymentId($option) {
+
+    public function setGetPaymentId($option) {
         $draft = filter_var($option, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['int'])));
         if ($draft) {
             $this->args['getpayment']['id'] = $draft;
         }
-    }   
-    
-        public function setGetPaymentFormat($option) {
+    }
+
+    public function setGetPaymentFormat($option) {
         $draft = filter_var($option, FILTER_SANITIZE_STRING);
         if ($draft) {
             $this->args['getpayment']['format'] = $draft;
         }
     }
-    
+
     public function setDeletePaymentMode($option) {
         $draft = filter_var($option, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['int'])));
         if ($draft == "1") {
             $this->args['deletepaymentmode'] = $draft;
         }
     }
-    
-        public function setMoneyDeleteId($option) {
+
+    public function setMoneyDeleteId($option) {
         $draft = filter_var($option, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['int'])));
         if ($draft) {
             $this->args['deletepayment']['id'] = $draft;
         }
-    }    
-    
+    }
+
     public function setEditPaymentMode($option) {
         $draft = filter_var($option, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['int'])));
         if ($draft == "1") {
             $this->args['editpaymentmode'] = $draft;
         }
     }
-    
-        public function setMoneyEditId($option) {
+
+    public function setMoneyEditId($option) {
         $draft = filter_var($option, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['int'])));
         if ($draft) {
             $this->args['editpayment']['id'] = $draft;
         }
     }
-    
+
     public function setMoneyEditNapravlenie($option) {
         $draft = filter_var($option, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['napravlenie'])));
         if ($draft) {
             $this->args['editpayment']['napravlenie'] = $draft;
         }
     }
-    
+
     public function setMoneyEditMoney($option) {
         $draft = filter_var($option, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => $this->checktypes['money'])));
         if ($draft) {
@@ -368,6 +368,7 @@ class Argsmaker {
             $this->args['editpayment']['subcategory'] = $draft;
         }
     }
+
     /**
      * Функция получения данных для проведения новой установки, она взаимодействует 
      * с POST напрямую, исходя из того, что на этапе установки пользователь знает,

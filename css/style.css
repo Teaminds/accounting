@@ -5,8 +5,8 @@
     }
 }
 .editbuttoncell button {
-        opacity: 0.5;
-    }
+    opacity: 0.5;
+}
 tr:hover td.editbuttoncell button {
-        opacity: 1;
-    }
+    opacity: 1;
+}

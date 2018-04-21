@@ -3,7 +3,7 @@
  * Представление для постраничной навигации
  */
 ?>
-<nav activepage="<?=$data['curpage']?>" id="pagination" aria-label="Page navigation">
+<nav activepage="<?= $data['curpage'] ?>" id="pagination" aria-label="Page navigation">
     <ul class="pagination">
         <?php
         $newpage = "";
