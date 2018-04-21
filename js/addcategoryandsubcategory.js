@@ -10,9 +10,10 @@ function addcategory(type) {
         type: "GET",
         url: 'category',
         data: getnewcategory,
-        success: ''
+        success: function(){
+            location.reload(true);
+        }
     });
-    setTimeout(location.reload(true), 500);
 }
 function addsubcategory(parentid) {
     newsubcategoryid = 'subcategory' + parentid;
@@ -22,7 +23,8 @@ function addsubcategory(parentid) {
         type: "GET",
         url: 'category',
         data: getnewsubcategory,
-        success: ''
+        success: function(){
+            location.reload(true);
+        }
     });
-    setTimeout(location.reload(true), 500);
 }
