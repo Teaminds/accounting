@@ -6,7 +6,7 @@
  * Редактирование платежа
  */
 
-function paymentedit(id)
+function paymentedit(id, afterfunction = "updatemainlog")
 {
     getedit = "";
     editdate = document.getElementById('editdate').value;
@@ -24,7 +24,11 @@ function paymentedit(id)
         type: "GET",
         url: 'paymenttools',
         data: getedit,
-        success: setTimeout(updatemainlog(document.getElementById('pagination').getAttribute('activepage')), 1000)
+        success: function () {
+            if (afterfunction === "updatemainlog") {
+                updatemainlog();
+            }
+        }
     });
 }
 
@@ -32,14 +36,18 @@ function paymentedit(id)
  * Удаление платежа
  */
 
-function paymentdelete(id)
+function paymentdelete(id, afterfunction = "updatemainlog")
 {
     getdelete = "deletepayment=1&moneydeleteid=" + id;
     $.ajax({
         type: "GET",
         url: 'paymenttools',
         data: getdelete,
-        success: setTimeout(updatemainlog(document.getElementById('pagination').getAttribute('activepage')), 1000)
+        success: function () {
+            if (afterfunction === "updatemainlog") {
+                updatemainlog();
+            }
+        }
     });
 }
 
@@ -47,7 +55,7 @@ function paymentdelete(id)
  * Добавление платежа
  */
 
-function addpayment(afterfunction = "")
+function addpayment(afterfunction = "updatemainlog")
 {
     getadd = "";
     adddate = document.getElementById('adddate').value;
@@ -65,7 +73,10 @@ function addpayment(afterfunction = "")
         type: "GET",
         url: 'mainlog',
         data: getadd,
-        success: console.log("success add")
+        success: function () {
+            if (afterfunction === "updatemainlog") {
+                updatemainlog();
+            }
+        }
     });
-    setTimeout(afterfunction(), 500);
 }

@@ -52,7 +52,7 @@
                                 <input type="number" placeholder="Сумма" class="form-control" name="addmoney" id="addmoney">
                             </div>
                             <div class="col-auto">
-                                <div class="form-control btn btn-primary" name="addsubmit" onclick="addpayment(updatemainlog);" id="addsubmit">Добавить</div>
+                                <div class="form-control btn btn-primary" name="addsubmit" onclick="addpayment();" id="addsubmit">Добавить</div>
                             </div>
                         </form>
                     </div>
